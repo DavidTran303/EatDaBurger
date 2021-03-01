@@ -1,12 +1,11 @@
 <h1>Eat Da Burger</h1>
 
-<img src="/img/burger.jpg" alt="Eat Da Burger">
+
 
 <ol>
   {{#each burgers}}
   <li>
     <p>
-
       {{id}} {{burger}}
 
       <button data-burgerid="{{id}}" </p>
@@ -22,17 +21,18 @@
   <button type="submit">Create A Burger</button>
 </form>
 
+
+
+
+
 <script>
-
-
-
   // CREATE burger button 
   const createBurgerBtn = document.getElementById('addburger')
 
 
 
 
-  creatBurgerBtn.addEventListener('submit', (e) => {
+  createBurgerBtn.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // Grabs the value of the textarea that goes by the name, "burger"
@@ -41,7 +41,7 @@
     }
     console.log(newBurger);
 
-    // Send POST request to create a new movie
+    // Send POST request to create a new burger
 
     fetch("/api/burgers", {
       method: "POST",
@@ -51,47 +51,18 @@
       },
 
       //make sure to serialize the JSON body
-      body: JSON.stringify(newMovie)
+      body: JSON.stringify(newBurger)
     })
       .then((response) => {
         // Empty the form
         document.getElementsByName('burger')[0].value = ''
 
-        // Reload the page so the user can see the new movie
+        // Reload the page so the user can see the new burger
         console.log("Created a delicious burger!")
         location.reload()
       });
   })
 
-  // UPDATE
-  const updateBurgerBtn = document.getElementById('updateburger')
-
-  // Set up the event listener for the create button
-  updateBurgerBtn.addEventListener('submit', (e) => {
-    e.preventDefault();
 
 
-
-    // Send POST request to create a new movie
-    fetch(`/api/burgers/${id}`, {
-      method: "PUT",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-
-      //make sure to serialize the JSON body
-      body: JSON.stringify(updatedBurger)
-    })
-      .then((response) => {
-        // Check that the response is all good
-        // Reload the page so the user can see the new movie
-        if (response.ok) {
-          console.log(`Updated the burgers with id: ${id}`)
-          location.reload()
-        } else {
-          alert('something went wrong!')
-        }
-      });
-  })
 </script>
