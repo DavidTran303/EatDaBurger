@@ -1,0 +1,23 @@
+<h1>Eat Da Burger</h1>
+
+<img src="/img/burger.jpg" alt="Eat Da Burger">
+
+<ol>
+  {{#each burgers}}
+  <li>
+    <p>
+
+      {{id}} {{burger}}
+
+      <button data-burgerid="{{id}}" </p>
+  </li>
+  {{/each}}
+</ol>
+
+
+
+<h2>Make A Burger</h2>
+<form id="addburger" class="button-size">
+  <textarea type="text" name="burger"></textarea>
+  <button type="submit">Create A Burger</button>
+</form>
