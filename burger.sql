@@ -9,7 +9,7 @@ USE burger_db;
 -- Create the table plans.
 CREATE TABLE burgers (
   id int NOT NULL AUTO_INCREMENT,
-  movie varchar(255) NOT NULL,
+  burger varchar(255) NOT NULL,
   PRIMARY KEY (id)
 );
 
