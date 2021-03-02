@@ -1,68 +1,27 @@
 <h1>Eat Da Burger</h1>
-
+<img src="burger.jpg" alt="Eat Da Burger">
 
 
 <ol>
   {{#each burgers}}
-  <li>
+  {{#unless devoured}}
+  <ul>
     <p>
-      {{id}} {{burger}}
+      {{id}}. {{burger}}
 
-      <button data-burgerid="{{id}}" </p>
-  </li>
+      <button id="eat" data-id='{{id}}'>Devour It</button>
+
+    </p>
+  </ul>
+  {{/unless}}
   {{/each}}
-</ol>
+</ol>`
 
 
 
 <h2>Make A Burger</h2>
+
 <form id="addburger" class="button-size">
   <textarea type="text" name="burger"></textarea>
   <button type="submit">Create A Burger</button>
 </form>
-
-
-
-
-
-<script>
-  // CREATE burger button 
-  const createBurgerBtn = document.getElementById('addburger')
-
-
-
-
-  createBurgerBtn.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // Grabs the value of the textarea that goes by the name, "burger"
-    const newBurger = {
-      burger: document.getElementsByName('burger')[0].value.trim()
-    }
-    console.log(newBurger);
-
-    // Send POST request to create a new burger
-
-    fetch("/api/burgers", {
-      method: "POST",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-
-      //make sure to serialize the JSON body
-      body: JSON.stringify(newBurger)
-    })
-      .then((response) => {
-        // Empty the form
-        document.getElementsByName('burger')[0].value = ''
-
-        // Reload the page so the user can see the new burger
-        console.log("Created a delicious burger!")
-        location.reload()
-      });
-  })
-
-
-
-</script>

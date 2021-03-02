@@ -3,7 +3,8 @@ const exphbs = require('express-handlebars');
 const mysql = require('mysql');
 
 const app = express();
-
+app.use(express.static('js'));
+app.use(express.static('img'));
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
 const PORT = process.env.PORT || 8080;
@@ -37,7 +38,7 @@ app.get('/index', (req, res) => {
     if (err) {
       return res.status(500).end();
     }
-
+    console.log(data)
     res.render('index', { burgers: data });
   });
 });
@@ -52,14 +53,22 @@ app.post('/api/burgers', (req, res) => {
         return res.status(500).end();
       }
 
-      // Send back the ID of the new movie
+      
       res.json({ id: result.insertId });
       console.log({ id: result.insertId });
     }
   );
 });
 
+app.put('/api/burgers/:id', (req,res) => {
+  const condition = [req.params.id]
+  
+  connection.query('UPDATE burgers SET devoured = true WHERE id =(?)', condition, (err, result) =>{
+      if (err) throw err;
 
+      res.status(200).end()
+    });
+})
 
 
 
