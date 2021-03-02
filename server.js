@@ -33,6 +33,10 @@ connection.connect((err) => {
   console.log(`connected as id ${connection.threadId}`);
 });
 
+app.get('/', (req,res) =>{
+  res.redirect('/index');
+});
+
 app.get('/index', (req, res) => {
   connection.query('SELECT * FROM burgers;', (err, data) => {
     if (err) {
